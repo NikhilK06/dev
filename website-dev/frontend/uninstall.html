@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevOps-Bot | DOB-CLI</title>
+  <title>DevOps-Bot | Uninstall</title>
+  <link rel="stylesheet" href="styles/navbar.css"> <!-- Added navbar.css -->
   <link rel="stylesheet" href="styles/installation.css">
   <link rel="stylesheet" href="styles/navbar.css">
   <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
@@ -11,7 +12,10 @@
 <body class="official">
   <!-- Header Toolbar -->
   <header class="toolbar">
-    <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+    <div class="logo" onclick="navigateHome()">
+      <img src="styles/assets/images/debops-bot.png" alt="DevOps-Bot Logo" class="logo-img">
+      <span class="logo-text">DevOps-Bot</span>
+    </div> <!-- Corrected: Added closing div tag -->
     <nav class="nav-links">
       <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
       <a href="features.html" class="nav-link">Features</a>
@@ -146,93 +150,56 @@
       </ul>
     </aside>
   
+    <!-- Main Content Area -->
     <main class="main-content">
-        <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
-          <h1>DOB-CLI - User Guide</h1>
-          <p>Use the DOB-CLI to remotely execute tasks on the DevOps-Bot host server with ease. This guide provides step-by-step instructions to install, configure, and test the DOB-CLI.</p>
-        </section>
-      
-        <section class="docker-swarm">
-          <h2>User Guide: DOB-CLI</h2>
-          <p>The DOB-CLI enables users to manage and execute tasks on a DevOps-Bot host server remotely. To use the CLI, you need a **persona credential**, which is part of the RBAC (Role-Based Access Control) functionality.</p>
-      
-          <h3>Pre-requisites</h3>
-          <h4>Ensure the Following Are Installed:</h4>
-          <ul>
-            <li>Git</li>
-            <li>Python 3</li>
-            <li>Pip (Python Package Installer)</li>
-          </ul>
-      
-          <h3>Installation Steps</h3>
-          <ol>
-            <li>Update your package list:</li>
-            <pre><code class="language-bash">apt-get update</code></pre>
-      
-            <li>Install Git:</li>
-            <pre><code class="language-bash">apt install git</code></pre>
-      
-            <li>Install Pip:</li>
-            <pre><code class="language-bash">apt install python3-pip</code></pre>
-      
-            <li>Clone the DOB-CLI repository:</li>
-            <pre><code class="language-bash">git clone https://github.com/Devops-Bot-Official/dob-cli.git</code></pre>
-      
-            <li>Navigate to the repository folder:</li>
-            <pre><code class="language-bash">cd dob-cli</code></pre>
-      
-            <li>Install the DOB-CLI package:</li>
-            <pre><code class="language-bash">pip install dob_cli-0.1-py3-none-any.whl</code></pre>
-      
-            <li>Verify installation by running:</li>
-            <pre><code class="language-bash">dob --help</code></pre>
-          </ol>
-      
-          <h3>Configuration Steps</h3>
-          <p>To configure DOB-CLI, you need the following:</p>
-          <ul>
-            <li>A **persona name**</li>
-            <li>A **persona token**</li>
-            <li>A **private key file**</li>
-            <li>The **host endpoint** of the DevOps-Bot server</li>
-          </ul>
-      
-          <h4>Steps:</h4>
-          <ol>
-            <li>Create a private key file:</li>
-            <pre><code class="language-bash">vim david_private.pem</code></pre>
-            <p>Add your private key contents to the file and save.</p>
-      
-            <li>Run the following command to configure the CLI:</li>
-            <pre><code class="language-bash">
-dob config --persona-name david --token 827a89a7-8c36-416b-8e44-e7f78960618f --private-key-path david_private.pem --host-endpoint http://IP:4102
-            </code></pre>
-            <p>Replace the values with your own persona name, token, private key path, and host endpoint.</p>
-          </ol>
-      
-          <h3>Testing the Configuration</h3>
-          <h4>Run a Sample Proxy Command:</h4>
-          <p>To test the configuration, execute the following command:</p>
-          <pre><code class="language-bash">dob run generate-webhook-secret</code></pre>
-          <p>If configured correctly, you’ll see a confirmation message, and a webhook secret will be generated successfully.</p>
-      
-          <h3>Notes</h3>
-          <ul>
-            <li>Ensure that your persona token is valid and has the required permissions.</li>
-            <li>Keep your private key file secure and do not share it with anyone.</li>
-            <li>If you face any issues, recheck the configuration command and ensure the host endpoint is accessible.</li>
-          </ul>
-        </section>
-        <br>
-        <section class="installation-photo">
-            <h3>Installation Steps PDF Reference for DOB-CLI</h3>
-            <p>For detailed installation steps, please refer to the PDF documentation:</p>
-            <br>
-            <object data="styles/assets/images/dob-cli.pdf" type="application/pdf" width="100%" height="600px">
-              <p>Your browser does not support PDFs. <a href="styles/assets/images/dob-cli.pdf" target="_blank">Download the PDF</a>.</p>
-            </object>
-          </section>          
-      </main>
+      <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+        <h1>Steps to Uninstall DevOps Bot</h1>
+      </section>
+  
+      <section class="installation">
+        <h2>Uninstall DevOps Bot</h2>
+        <h3>Steps to Uninstall</h3>
+        <ol>
+          <li><strong>Uninstall the `devops-bot` Package:</strong>
+            <p>Run the following command to uninstall the `devops-bot` package using `pip3`:</p>
+            <pre><code class="language-bash">pip3 uninstall -y devops-bot</code></pre>
+            <p>This command removes the package from your Python environment.</p>
+          </li>
+          <li><strong>Remove Residual Files:</strong>
+            <p>The `devops-bot` package creates additional files and directories during installation and execution. You should clean them up to fully remove the application.</p>
+            <h4>Check the Default Directory</h4>
+            <p>The default directory for the `devops-bot` files is:</p>
+            <pre><code class="language-bash">/etc/devops-bot</code></pre>
+            <h4>Delete the Directory</h4>
+            <p>Run the following command to remove the directory:</p>
+            <pre><code class="language-bash">sudo rm -rf /etc/devops-bot</code></pre>
+            <p>This command permanently deletes all files and configurations related to `devops-bot`.</p>
+          </li>
+          <li><strong>Verify the Cleanup:</strong>
+            <p>To ensure all components are removed:</p>
+            <ol>
+              <li>Check for any remaining files:
+                <pre><code class="language-bash">ls /etc | grep devops-bot</code></pre>
+                <p>If nothing is listed, all files have been successfully removed.</p>
+              </li>
+              <li>Verify `pip3` no longer lists the package:
+                <pre><code class="language-bash">pip3 list | grep devops-bot</code></pre>
+                <p>If nothing is listed, the package has been completely uninstalled.</p>
+              </li>
+            </ol>
+          </li>
+        </ol>
+        <h3>Additional Notes</h3>
+        <p>If the `devops-bot` service was running as a systemd service, ensure it is stopped and removed:</p>
+        <pre><code class="language-bash">sudo systemctl stop devops-bot.service
+  sudo systemctl disable devops-bot.service
+  sudo rm /etc/systemd/system/devops-bot.service
+  sudo systemctl daemon-reload</code></pre>
+        <p>If you encounter issues during the uninstallation process, ensure you have the necessary permissions (use `sudo` if required).</p>
+      </section>
+  
+      <!-- Additional Sections -->
+    </main>
   
     <footer class="footer">
         <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
@@ -261,7 +228,7 @@ dob config --persona-name david --token 827a89a7-8c36-416b-8e44-e7f78960618f --p
         }
     
         function navigateHome() {
-          window.location.href = 'Home.html';
+          window.location.href = 'index.html';
         }
     
         function navigateOfficialWebsite() {

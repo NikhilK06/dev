@@ -3,15 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevOps-Bot | Uninstall</title>
-  <link rel="stylesheet" href="styles/installation.css">
+  <title>DevOps-Bot | Ansible</title>
   <link rel="stylesheet" href="styles/navbar.css">
+  <link rel="stylesheet" href="styles/installation.css">
+  <!-- Removed duplicate navbar.css link -->
   <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
 </head>
 <body class="official">
   <!-- Header Toolbar -->
   <header class="toolbar">
-    <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+    <div class="hamburger-menu" onclick="toggleSidebar()">
+      ☰  </div>
+    </div>
+    <div class="logo" onclick="navigateHome()">
+      <img src="styles/assets/images/debops-bot.png" alt="DevOps-Bot Logo" class="logo-img">
+      <span class="logo-text">DevOps-Bot</span>
+    </div> <!-- Corrected: Added closing div tag -->
     <nav class="nav-links">
       <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
       <a href="features.html" class="nav-link">Features</a>
@@ -141,95 +148,141 @@
           </ul>
         </li>
         <li><a href="comingsoon.html">Use Cases</a></li>
-        <li><a href="comingsoon.html">API Reference</a></li>
+        <li><a href="comingsoon.html">API Reference</a></li> 
         <li><a href="comingsoon.html">Release Notes</a></li>
       </ul>
     </aside>
-  
-    <!-- Main Content Area -->
-    <main class="main-content">
-      <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
-        <h1>Steps to Uninstall DevOps Bot</h1>
-      </section>
-  
-      <section class="installation">
-        <h2>Uninstall DevOps Bot</h2>
-        <h3>Steps to Uninstall</h3>
-        <ol>
-          <li><strong>Uninstall the `devops-bot` Package:</strong>
-            <p>Run the following command to uninstall the `devops-bot` package using `pip3`:</p>
-            <pre><code class="language-bash">pip3 uninstall -y devops-bot</code></pre>
-            <p>This command removes the package from your Python environment.</p>
-          </li>
-          <li><strong>Remove Residual Files:</strong>
-            <p>The `devops-bot` package creates additional files and directories during installation and execution. You should clean them up to fully remove the application.</p>
-            <h4>Check the Default Directory</h4>
-            <p>The default directory for the `devops-bot` files is:</p>
-            <pre><code class="language-bash">/etc/devops-bot</code></pre>
-            <h4>Delete the Directory</h4>
-            <p>Run the following command to remove the directory:</p>
-            <pre><code class="language-bash">sudo rm -rf /etc/devops-bot</code></pre>
-            <p>This command permanently deletes all files and configurations related to `devops-bot`.</p>
-          </li>
-          <li><strong>Verify the Cleanup:</strong>
-            <p>To ensure all components are removed:</p>
-            <ol>
-              <li>Check for any remaining files:
-                <pre><code class="language-bash">ls /etc | grep devops-bot</code></pre>
-                <p>If nothing is listed, all files have been successfully removed.</p>
-              </li>
-              <li>Verify `pip3` no longer lists the package:
-                <pre><code class="language-bash">pip3 list | grep devops-bot</code></pre>
-                <p>If nothing is listed, the package has been completely uninstalled.</p>
-              </li>
-            </ol>
-          </li>
-        </ol>
-        <h3>Additional Notes</h3>
-        <p>If the `devops-bot` service was running as a systemd service, ensure it is stopped and removed:</p>
-        <pre><code class="language-bash">sudo systemctl stop devops-bot.service
-  sudo systemctl disable devops-bot.service
-  sudo rm /etc/systemd/system/devops-bot.service
-  sudo systemctl daemon-reload</code></pre>
-        <p>If you encounter issues during the uninstallation process, ensure you have the necessary permissions (use `sudo` if required).</p>
-      </section>
-  
-      <!-- Additional Sections -->
-    </main>
-  
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+      <h1>Ansible</h1>
+      <p>Automated provisioning and configuration of Ansible controllers and workers.</p>
+    </section>
+
+    <section class="docker-swarm">
+      <h2>Commands: dob ansible config, dob ansible attach-worker</h2>
+      <p>This feature introduces automated provisioning and configuration of Ansible controllers and workers, including both manager and worker nodes. The setup involves creating EC2 instances, configuring Ansible, and managing inventory files.</p>
+      
+      <h3>Key Highlights:</h3>
+      <ol>
+        <li><strong>Ansible Commands Group</strong>
+          <ul>
+            <li><strong>Command Group:</strong> ansible</li>
+            <li><strong>Description:</strong> Introduces a command group for managing and configuring Ansible controllers and workers in a DevOps environment using YAML-based configuration files.</li>
+            <li><strong>Supported Commands:</strong>
+              <ul>
+                <li><strong>Setup Ansible Controller</strong>
+                  <ul>
+                    <li><strong>Command:</strong> dob ansible config --file-path &lt;path&gt;</li>
+                    <li><strong>Description:</strong> Provisions a new Ansible controller instance on AWS, configures SSH access, installs Ansible, and prepares the ansible.cfg and inventory file. Supports custom configuration via YAML.</li>
+                  </ul>
+                </li>
+                <li><strong>Attach New Workers</strong>
+                  <ul>
+                    <li><strong>Command:</strong> dob ansible attach-worker --file-path &lt;path&gt;</li>
+                    <li><strong>Description:</strong> Attaches new worker nodes to an existing Ansible controller. Automatically provisions new instances, distributes SSH keys, configures inventory, and performs a connectivity check using the ansible ping module.</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ol>
+
+      <h3>Key Features:</h3>
+      <ul>
+        <li><strong>YAML-Driven Configuration</strong>
+          <ul>
+            <li>Allows users to specify controller and worker configurations, including:</li>
+            <li>AMI ID</li>
+            <li>Instance type</li>
+            <li>Security group</li>
+            <li>Key pair name</li>
+            <li>Inventory path</li>
+            <li>Custom Ansible configurations</li>
+          </ul>
+        </li>
+        <li><strong>Automated Ansible Installation</strong>
+          <ul>
+            <li>Detects the operating system and installs the correct Ansible version and dependencies on the controller.</li>
+          </ul>
+        </li>
+        <li><strong>Dynamic SSH Key Management</strong>
+          <ul>
+            <li>Automatically generates and distributes SSH keys to ensure secure communication between the controller and workers.</li>
+          </ul>
+        </li>
+        <li><strong>Inventory Management</strong>
+          <ul>
+            <li>Dynamically creates and updates the inventory file on the controller with new worker nodes.</li>
+          </ul>
+        </li>
+        <li><strong>Error Handling and Validation</strong>
+          <ul>
+            <li>Comprehensive error handling for instance provisioning, SSH key distribution, and command execution.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Example YAML Configuration:</h3>
+      <pre><code class="language-yaml">
+controller:
+  name: ansible-controller
+  instance_type: t2.medium
+  key_name: my-ssh-key
+  security_group: my-security-group
+workers:
+  name: ansible-worker
+  instance_type: t2.small
+  key_name: my-ssh-key
+  security_group: my-security-group
+  count: 3
+      </code></pre>
+
+      <h3>Example Usage:</h3>
+      <pre><code class="language-bash">
+dob ansible config --file-path /path/to/config.yaml
+dob ansible attach-worker --file-path /path/to/new-workers-config.yaml
+      </code></pre>
+    </section>
+
+    <!-- Additional Sections -->
+  </main>
+
+
     <footer class="footer">
-        <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
-      </footer>
-    
-      <!-- JavaScript Files -->
-      <script src="scripts/main.js"></script>
-      <script>
-        function toggleNested(event) {
-          event.preventDefault();
-          const parent = event.target.parentElement;
-          parent.classList.toggle('active');
-        }
-    
-        function performSearch() {
-          const query = document.getElementById('search-input').value.toLowerCase();
-          const links = document.querySelectorAll('.nav-links a, .sidebar a');
-    
-          links.forEach(link => {
-            if (link.textContent.toLowerCase().includes(query)) {
-              link.style.display = 'block';
-            } else {
-              link.style.display = 'none';
-            }
-          });
-        }
-    
-        function navigateHome() {
-          window.location.href = 'index.html';
-        }
-    
-        function navigateOfficialWebsite() {
-          window.location.href = 'officialwebsite.html';
-        }
-      </script>
-    </body>
-    </html>
+      <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+    </footer>
+  
+    <!-- JavaScript Files -->
+    <script src="scripts/main.js"></script>
+    <script>
+      function toggleNested(event) {
+        event.preventDefault();
+        const parent = event.target.parentElement;
+        parent.classList.toggle('active');
+      }
+  
+      function performSearch() {
+        const query = document.getElementById('search-input').value.toLowerCase();
+        const links = document.querySelectorAll('.nav-links a, .sidebar a');
+  
+        links.forEach(link => {
+          if (link.textContent.toLowerCase().includes(query)) {
+            link.style.display = 'block';
+          } else {
+            link.style.display = 'none';
+          }
+        });
+      }
+  
+      function navigateHome() {
+        window.location.href = 'index.html';
+      }
+  
+      function navigateOfficialWebsite() {
+        window.location.href = 'officialwebsite.html';
+      }
+    </script>
+  </body>
+  </html>

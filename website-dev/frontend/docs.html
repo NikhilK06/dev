@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevOps-Bot | Coming Soon</title>
-  <link rel="stylesheet" href="styles/installation.css">
+  <title>DevOps-Bot | Docs</title>
+  <link rel="stylesheet" href="styles/navbar.css">
+  <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/navbar.css">
   <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
 </head>
 <body class="official">
   <!-- Header Toolbar -->
   <header class="toolbar">
-    <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+    <div class="logo" onclick="navigateHome()">
+      <img src="styles/assets/images/debops-bot.png" alt="DevOps-Bot Logo" class="logo-img">
+      <span class="logo-text">DevOps-Bot</span>
+    </div> <!-- Corrected: Added closing div tag -->
     <nav class="nav-links">
       <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
       <a href="features.html" class="nav-link">Features</a>
@@ -26,6 +30,7 @@
     </div>
   </header>
 
+  <!-- Sidebar (optional) -->
     <!-- Sidebar (optional) -->
     <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
       <div class="search-bar">
@@ -40,7 +45,7 @@
           <ul class="nested">
             <li><a href="installation.html">Installation</a></li>
             <li><a href="uninstall.html">Uninstall</a></li>
-          <li><a href="comingsoon.html">Requirements</a></li>
+            <li><a href="comingsoon.html">Requirements</a></li>
             <li><a href="comingsoon.html">Best Practices</a></li>
             <li>
               <a href="#" onclick="toggleNested(event)">Functions</a>
@@ -140,56 +145,43 @@
           </ul>
         </li>
         <li><a href="comingsoon.html">Use Cases</a></li>
-        <li><a href="comingsoon.html">API Reference</a></li> 
+        <li><a href="comingsoon.html">API Reference</a></li>
         <li><a href="comingsoon.html">Release Notes</a></li>
       </ul>
     </aside>
-  <!-- Main Content Area -->
-  <main class="main-content">
-    <section class="hero" style="background: url('styles/assets/images/ComingSoon.png') no-repeat center center; background-size: cover;">
-        <link rel="stylesheet" href="styles/comingsoon.css"> 
-        <body>
-            <div class="bgimg">
-            </div>
-        </body>
-    <!-- Additional Sections -->
-  </main>
+  <footer class="footer">
+    <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+  </footer>
 
+  <!-- JavaScript Files -->
+  <script src="scripts/main.js"></script>
+  <script>
+    function toggleNested(event) {
+      event.preventDefault();
+      const parent = event.target.parentElement;
+      parent.classList.toggle('active');
+    }
 
-    <footer class="footer">
-      <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
-    </footer>
-  
-    <!-- JavaScript Files -->
-    <script src="scripts/main.js"></script>
-    <script>
-      function toggleNested(event) {
-        event.preventDefault();
-        const parent = event.target.parentElement;
-        parent.classList.toggle('active');
-      }
-  
-      function performSearch() {
-        const query = document.getElementById('search-input').value.toLowerCase();
-        const links = document.querySelectorAll('.nav-links a, .sidebar a');
-  
-        links.forEach(link => {
-          if (link.textContent.toLowerCase().includes(query)) {
-            link.style.display = 'block';
-          } else {
-            link.style.display = 'none';
-          }
-        });
-      }
-  
-      function navigateHome() {
-        window.location.href = 'index.html';
-      }
-  
-      function navigateOfficialWebsite() {
-        window.location.href = 'officialwebsite.html';
-      }
-    </script>
-  </body>
-  </html>
-  
+    function performSearch() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const links = document.querySelectorAll('.nav-links a, .sidebar a');
+
+      links.forEach(link => {
+        if (link.textContent.toLowerCase().includes(query)) {
+          link.style.display = 'block';
+        } else {
+          link.style.display = 'none';
+        }
+      });
+    }
+
+    function navigateHome() {
+      window.location.href = 'index.html';
+    }
+
+    function navigateOfficialWebsite() {
+      window.location.href = 'officialwebsite.html';
+    }
+  </script>
+</body>
+</html>
